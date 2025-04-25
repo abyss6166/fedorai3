@@ -24,7 +24,7 @@
 - name: install i3 config file
   tags: i3
   copy:
-    src: files/config_poly
+    src: files/i3config
     dest: /home/{{ user }}/.config/i3/config
     backup: yes
     owner: "{{ user }}"
@@ -67,7 +67,7 @@
   tags: rofi,i3
   copy:
     src: files/config.rasi
-    dest: /home/{{ user }}/.config/rofi/config.rasi
+    dest: /home/{{ user }}/.config/rofi/
     owner: "{{ user }}"
     group: "{{ user }}"
     backup: yes
@@ -117,13 +117,13 @@
     update: yes
     force: true
 
-- name: install themes
-  tags: themes
-  unarchive:
-    src: files/polybar.tar.gz
-    dest: /home/{{ user }}/.config/polybar/
-    owner: "{{ user }}"
-    group: "{{ user }}"
+#- name: install themes
+#  tags: themes
+#  unarchive:
+#    src: files/polybar.tar.gz
+#    dest: /home/{{ user }}/.config/polybar/
+#    owner: "{{ user }}"
+#    group: "{{ user }}"
 
 
 
