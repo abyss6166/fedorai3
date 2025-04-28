@@ -33,7 +33,7 @@
 
     - copy:
         src: files/picom.conf
-        dest: /home/{{ user }}/.config/picom/picom.conf
+        dest: /home/{{ user }}/.config/picom/
         owner: "{{ user }}"
         group: "{{ user }}"
         backup: yes
