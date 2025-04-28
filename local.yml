@@ -15,7 +15,7 @@
   hosts: localhost
   tasks:
     - include_vars: 
-        file: main.yml"
+        file: vars/main.yml"
 
     - package:
         name:
