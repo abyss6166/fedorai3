@@ -1,0 +1,138 @@
+---
+
+- hosts: localhost
+  connection: local
+  become: true
+
+  pre_tasks:
+    - name: upgrade
+      package:
+        update_cache: yes
+        name: "*"
+        state: latest
+
+- name: install i3 packages
+  hosts: localhost
+  tasks:
+    - package:
+        name:
+          - i3
+          - picom
+          - polybar
+          - rofi
+
+    - copy:
+        src: files/i3config
+        dest: /home/{{ user }}/.config/i3/config
+        backup: yes
+        owner: "{{ user }}"
+        group: "{{ user }}"
+        
+        #- name: install i3 config file
+        #  tags: i3
+        #  hosts: localhost
+        #  copy:
+        #    src: files/i3config
+        #    dest: /home/{{ user }}/.config/i3/config
+        #    backup: yes
+        #    owner: "{{ user }}"
+        #    group: "{{ user }}"
+
+- name: install picom config file
+  tags: picom,i3
+  copy:
+    src: files/picom.conf
+    dest: /home/{{ user }}/.config/picom/picom.conf
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    backup: yes
+
+- name: install polybar config file
+  tags: polybar,i3
+  copy:
+    src: files/config-color.ini
+    dest: /home/{{ user }}/.config/polybar/config.ini
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    backup: yes
+
+- name: install polybar launch file
+  tags: polybar,i3
+  copy:
+    src: files/launch-newpolybar.sh
+    dest: /home/{{ user }}/.config/polybar/launch.sh
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    backup: yes
+
+- name: set polybar script to executable
+  tags: polybar
+  file:
+    path: /home/{{ user }}/.config/polybar/launch.sh
+    mode: +x
+
+- name: install rofi config file
+  tags: rofi,i3
+  copy:
+    src: files/config.rasi
+    dest: /home/{{ user }}/.config/rofi/
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    backup: yes
+
+- name: download tilix config file
+  tags: tilix
+  copy:
+    src: files/tilix.dconf
+    dest: /home/{{ user }}/
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    backup: yes
+
+- name: install Xresources file
+  tags: Xresources
+  copy:
+    src: files/Xresources
+    dest: /home/{{ user }}/.Xresources
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    backup: yes
+
+- name: download polybar scripts
+  tags: polybar
+  git:
+    repo: https://github.com/polybar/polybar-scripts.git
+    dest: /home/{{ user }}/git/polybar
+    clone: yes
+    update: yes
+    force: true
+
+- name: change polybar scripts permissions
+  tags: polybar
+  file:
+    path: /home/{{ user }}/git/polybar
+    state: directory
+    recurse: yes
+    owner: "{{ user }}"
+    group: "{{ user }}"
+
+- name: download polybar themes
+  tags: polybar
+  git:
+    repo: https://github.com/adi1090x/polybar-themes.git
+    dest: /home/{{ user }}/git/polybar-themes
+    clone: yes
+    update: yes
+    force: true
+
+#- name: install themes
+#  tags: themes
+#  unarchive:
+#    src: files/polybar.tar.gz
+#    dest: /home/{{ user }}/.config/polybar/
+#    owner: "{{ user }}"
+#    group: "{{ user }}"
+
+
+
+
