@@ -13,8 +13,9 @@
 
 - name: install i3
   hosts: localhost
-  include_vars: vars/main.yml"
   tasks:
+    - include_vars: vars/main.yml"
+
     - package:
         name:
           - i3
