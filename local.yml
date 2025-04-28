@@ -12,7 +12,7 @@
         state: latest
 
 - name: install i3 packages
-  hosts: localhost
+  connection: local
   tasks:
     - package:
         name:
