@@ -38,12 +38,12 @@
         group: "{{ user }}"
         backup: yes
 
-    - copy:
-        src: files/config-color.ini
-        dest: /home/{{ user }}/.config/polybar/config.ini
-        owner: "{{ user }}"
-        group: "{{ user }}"
-        backup: yes
+    # - copy:
+    #     src: files/config-color.ini
+    #     dest: /home/{{ user }}/.config/polybar/config.ini
+    #     owner: "{{ user }}"
+    #     group: "{{ user }}"
+    #     backup: yes
 
     # - copy:
     #     src: files/launch-newpolybar.sh
@@ -97,6 +97,13 @@
         clone: yes
         update: yes
         force: true
+
+    -  unarchive:
+        src: files/blocks.tar.gz
+        dest: /home/{{ user }}/.config/polybar/
+        owner: "{{ user }}"
+        group: "{{ user }}"
+
 
 #- name: install themes
 #  tags: themes
