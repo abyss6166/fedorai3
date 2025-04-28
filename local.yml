@@ -45,16 +45,16 @@
         group: "{{ user }}"
         backup: yes
 
-    - copy:
-        src: files/launch-newpolybar.sh
-        dest: /home/{{ user }}/.config/polybar/launch.sh
-        owner: "{{ user }}"
-        group: "{{ user }}"
-        backup: yes
+    # - copy:
+    #     src: files/launch-newpolybar.sh
+    #     dest: /home/{{ user }}/.config/polybar/launch.sh
+    #     owner: "{{ user }}"
+    #     group: "{{ user }}"
+    #     backup: yes
 
-    - file:
-        path: /home/{{ user }}/.config/polybar/launch.sh
-        mode: +x
+    # - file:
+    #     path: /home/{{ user }}/.config/polybar/launch.sh
+    #     mode: +x
 
     - copy:
         src: files/config.rasi
