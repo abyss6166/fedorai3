@@ -100,7 +100,7 @@
 
     -  unarchive:
         src: files/blocks.tar.gz
-        dest: /home/{{ user }}/.config/polybar/
+        dest: /home/{{ user }}/
         owner: "{{ user }}"
         group: "{{ user }}"
 
