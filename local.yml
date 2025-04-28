@@ -10,10 +10,10 @@
         update_cache: yes
         name: "*"
         state: latest
-- include_vars: main.yml"
 
 - name: install i3
   hosts: localhost
+  include_vars: vars/main.yml"
   tasks:
     - package:
         name:
