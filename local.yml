@@ -24,6 +24,11 @@
           - polybar
           - rofi
 
+    - file:
+        path: /home/{{ user }}/.config/i3/
+        state: directory
+        mode: '0755'
+        
     - copy:
         src: files/i3config
         dest: /home/{{ user }}/.config/i3/config
