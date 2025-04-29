@@ -103,7 +103,7 @@
         update: yes
         force: true
 
-    -  unarchive:
+    -  copy:
         src: files/blocks.tar.gz
         dest: /home/{{ user }}/
         owner: "{{ user }}"
