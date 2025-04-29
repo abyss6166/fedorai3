@@ -234,7 +234,7 @@ exec picom --backend xrender
 exec nitrogen --restore
 exec_always --no-startup-id xrdb ~/.Xresources
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh --blocks
-exec --no-startup-id VBoxClient --clipboard
+# exec --no-startup-id VBoxClient --clipboard
 #exec_always --no-startup-id numlockx on
 bindsym F11 exec tilix --quake
 
